@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uma Steel Furniture | উমা স্টিল ফার্নিচার</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Cinzel:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96B;
+    --gold-pale: #F5E6B8;
+    --gold-dark: #8B6914;
+    --onyx: #0A0A0A;
+    --charcoal: #141414;
+    --dark: #1C1C1C;
+    --smoke: #2A2A2A;
+    --ivory: #FAF6EE;
+    --cream: #F0E8D0;
+    --white: #FFFFFF;
+    --steel: #8A9BA8;
+    --steel-light: #C5D4DC;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--onyx);
+    color: var(--ivory);
+    font-family: 'Cormorant Garamond', 'Noto Serif Bengali', serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ─── NOISE TEXTURE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999; opacity: 0.4;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--onyx); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+  /* ─── GOLD LINE DIVIDER ─── */
+  .gold-line {
+    width: 80px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 1rem auto;
+  }
+  .gold-line.wide { width: 200px; }
+
+  /* ─── FLOATING PARTICLES ─── */
+  .particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  .particle {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: float linear infinite;
+    opacity: 0;
+  }
+  @keyframes float {
+    0%   { transform: translateY(100vh) translateX(0); opacity: 0; }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.3; }
+    100% { transform: translateY(-10vh) translateX(40px); opacity: 0; }
+  }
+
+  /* ─── NAVIGATION ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 1.2rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.97), transparent);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    backdrop-filter: blur(12px);
+    transition: all 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(10,10,10,0.97);
+    border-bottom-color: rgba(201,168,76,0.3);
+    box-shadow: 0 4px 40px rgba(201,168,76,0.08);
+  }
+  .nav-logo {
+    display: flex; flex-direction: column; line-height: 1;
+  }
+  .nav-logo .bn {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+  }
+  .nav-logo .en {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem; font-weight: 400;
+    color: var(--steel-light);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+  .nav-links a {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem; font-weight: 400;
+    color: var(--steel-light);
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 1px; background: var(--gold);
+    transform: scaleX(0); transition: transform 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold-light) !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.3s ease !important;
+  }
+  .nav-cta:hover {
+    background: var(--gold) !important;
+    color: var(--onyx) !important;
+  }
+  .nav-cta::after { display: none !important; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 80% at 10% 60%, rgba(138,155,168,0.05) 0%, transparent 60%),
+      var(--onyx);
+  }
+
+  /* Decorative steel-mesh SVG bg */
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(201,168,76,0.04) 60px),
+      repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(201,168,76,0.04) 60px);
+    pointer-events: none;
+  }
+
+  /* corner ornament */
+  #hero::after {
+    content: '';
+    position: absolute;
+    top: 80px; right: 80px;
+    width: 300px; height: 300px;
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 50%;
+    animation: spinSlow 20s linear infinite;
+  }
+  @keyframes spinSlow { to { transform: rotate(360deg); } }
+
+  .hero-content {
+    text-align: center;
+    position: relative; z-index: 2;
+    max-width: 900px;
+    padding: 0 2rem;
+    animation: heroReveal 1.2s ease forwards;
+    opacity: 0; transform: translateY(30px);
+  }
+  @keyframes heroReveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem; letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 0.4rem 1rem;
+    margin-bottom: 2rem;
+    animation: heroReveal 1.2s 0.2s ease forwards;
+    opacity: 0;
+  }
+  .hero-badge span { color: var(--steel-light); }
+
+  .hero-title-bn {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--gold-pale) 0%, var(--gold-light) 40%, var(--gold) 70%, var(--gold-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.4rem;
+    animation: heroReveal 1.2s 0.35s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-title-en {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1rem, 2.5vw, 1.6rem);
+    font-weight: 400;
+    color: var(--steel-light);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: heroReveal 1.2s 0.5s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-divider {
+    display: flex; align-items: center; justify-content: center; gap: 1rem;
+    margin: 1.5rem 0 2rem;
+    animation: heroReveal 1.2s 0.65s ease forwards;
+    opacity: 0;
+  }
+  .hero-divider::before, .hero-divider::after {
+    content: '';
+    height: 1px; width: 120px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+  .hero-divider::after {
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+  .hero-divider .diamond {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  .hero-tagline {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 300;
+    color: rgba(250,246,238,0.75);
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto 0.5rem;
+    animation: heroReveal 1.2s 0.75s ease forwards;
+    opacity: 0;
+  }
+  .hero-tagline-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: rgba(197,212,220,0.65);
+    margin-bottom: 3rem;
+    animation: heroReveal 1.2s 0.85s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-buttons {
+    display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;
+    animation: heroReveal 1.2s 1s ease forwards;
+    opacity: 0;
+  }
+
+  .btn-gold {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+    color: var(--onyx);
+    border: none;
+    padding: 0.9rem 2.5rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-gold::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-pale));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.4); }
+  .btn-gold:hover::before { opacity: 1; }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--gold-light);
+    border: 1px solid rgba(201,168,76,0.5);
+    padding: 0.9rem 2.5rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-outline:hover {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold);
+    box-shadow: 0 0 20px rgba(201,168,76,0.2);
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem; letter-spacing: 0.2em;
+    color: rgba(201,168,76,0.5);
+    text-transform: uppercase;
+    animation: scrollBob 2s ease-in-out infinite;
+  }
+  .hero-scroll .arrow { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); }
+  @keyframes scrollBob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+  /* ─── SECTION HEADERS ─── */
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.8rem;
+  }
+  .section-title-bn {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--gold-pale), var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.3rem;
+  }
+  .section-title-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--steel-light);
+    margin-bottom: 1rem;
+  }
+
+  /* ─── STATS BAR ─── */
+  #stats {
+    background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.05));
+    border-top: 1px solid rgba(201,168,76,0.2);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 2.5rem 3rem;
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    max-width: 900px; margin: 0 auto;
+    gap: 0;
+  }
+  .stat-item {
+    text-align: center;
+    padding: 0 2rem;
+    position: relative;
+  }
+  .stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute; right: 0; top: 20%; bottom: 20%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.4), transparent);
+  }
+  .stat-num {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label-bn {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 0.85rem;
+    color: rgba(250,246,238,0.7);
+  }
+  .stat-label-en {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    color: var(--steel);
+    text-transform: uppercase;
+  }
+
+  /* ─── SERVICES ─── */
+  #services {
+    padding: 7rem 3rem;
+    position: relative;
+  }
+  #services::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 40%;
+    background: radial-gradient(ellipse at right, rgba(201,168,76,0.04), transparent);
+    pointer-events: none;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    max-width: 1100px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(138,155,168,0.05));
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+  .service-card {
+    background: var(--charcoal);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.06), transparent);
+    opacity: 0; transition: opacity 0.5s;
+  }
+  .service-card:hover {
+    background: var(--smoke);
+    border-color: rgba(201,168,76,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.2);
+    z-index: 2;
+  }
+  .service-card:hover::before { opacity: 1; }
+
+  .service-icon {
+    width: 60px; height: 60px;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .service-icon::before {
+    content: '';
+    position: absolute; inset: 4px;
+    border: 1px solid rgba(201,168,76,0.1);
+    transition: border-color 0.3s;
+  }
+  .service-card:hover .service-icon { border-color: rgba(201,168,76,0.7); }
+  .service-card:hover .service-icon::before { border-color: rgba(201,168,76,0.3); }
+  .service-icon svg { width: 26px; height: 26px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+
+  .service-num {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem; letter-spacing: 0.2em;
+    color: rgba(201,168,76,0.4);
+    display: block; margin-bottom: 0.6rem;
+  }
+  .service-name-bn {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 1.2rem; font-weight: 600;
+    color: var(--ivory);
+    margin-bottom: 0.25rem;
+    transition: color 0.3s;
+  }
+  .service-card:hover .service-name-bn { color: var(--gold-light); }
+  .service-name-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--steel);
+    margin-bottom: 1rem;
+  }
+  .service-desc {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 0.88rem;
+    color: rgba(250,246,238,0.55);
+    line-height: 1.7;
+  }
+  .service-arrow {
+    margin-top: 1.5rem;
+    display: flex; align-items: center; gap: 0.5rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem; letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    opacity: 0; transform: translateX(-8px);
+    transition: all 0.3s;
+  }
+  .service-card:hover .service-arrow { opacity: 1; transform: translateX(0); }
+  .service-arrow::after { content: '→'; }
+
+  /* ─── WHY CHOOSE US ─── */
+  #why {
+    padding: 7rem 3rem;
+    background:
+      radial-gradient(ellipse 60% 50% at 0% 50%, rgba(201,168,76,0.05) 0%, transparent 60%),
+      var(--charcoal);
+    position: relative;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .why-visual {
+    position: relative;
+  }
+  .why-main-box {
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 3rem;
+    background: linear-gradient(135deg, rgba(201,168,76,0.05), transparent);
+    position: relative;
+  }
+  .why-main-box::before, .why-main-box::after {
+    content: '';
+    position: absolute;
+    width: 30px; height: 30px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+  .why-main-box::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+  .why-main-box::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+  .why-quote-bn {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 1.35rem; font-weight: 300;
+    color: var(--ivory);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .why-quote-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--steel-light);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  .why-sig {
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .why-sig .line { flex: 1; height: 1px; background: rgba(201,168,76,0.3); }
+  .why-sig span {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+
+  .why-features {
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .why-feature {
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    transition: all 0.3s;
+  }
+  .why-feature:last-child { border-bottom: none; padding-bottom: 0; }
+  .why-feature:hover { transform: translateX(6px); }
+  .why-feature-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    border: 1px solid rgba(201,168,76,0.25);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold-light);
+    font-size: 1.2rem;
+  }
+  .why-feature-text {}
+  .why-feature-title-bn {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 1rem; font-weight: 600;
+    color: var(--ivory); margin-bottom: 0.2rem;
+  }
+  .why-feature-title-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--steel);
+  }
+
+  /* ─── BOOKING / CONTACT ─── */
+  #booking {
+    padding: 7rem 3rem;
+    position: relative;
+    background: var(--onyx);
+  }
+  #booking::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(201,168,76,0.015) 40px, rgba(201,168,76,0.015) 41px);
+    pointer-events: none;
+  }
+
+  .booking-inner {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .contact-info h3 {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 1.5rem; font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 0.3rem;
+  }
+  .contact-info h3 + span {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--steel);
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 2rem;
+  }
+
+  .contact-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+  .contact-item-icon {
+    width: 36px; height: 36px; flex-shrink: 0;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .contact-item-icon svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+  .contact-item-text {}
+  .contact-item-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem; letter-spacing: 0.15em;
+    color: var(--steel);
+    text-transform: uppercase; display: block;
+    margin-bottom: 0.2rem;
+  }
+  .contact-item-value {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 0.9rem;
+    color: var(--ivory);
+  }
+
+  /* CALL BUTTON WITH DUAL NUMBER REVEAL */
+  .call-btn-wrapper { margin-top: 2rem; }
+  .call-btn {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    color: var(--onyx);
+    border: none;
+    padding: 0.9rem 2rem;
+    width: 100%;
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .call-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .call-btn:hover { box-shadow: 0 8px 30px rgba(201,168,76,0.5); transform: translateY(-2px); }
+  .call-btn:hover::before { opacity: 1; }
+  .call-btn svg { width: 18px; height: 18px; position: relative; z-index: 1; }
+  .call-btn span { position: relative; z-index: 1; }
+
+  /* Dual numbers popup */
+  .phone-popup {
+    display: none;
+    margin-top: 1rem;
+    border: 1px solid rgba(201,168,76,0.4);
+    overflow: hidden;
+    animation: popReveal 0.4s cubic-bezier(0.23,1,0.32,1) forwards;
+  }
+  @keyframes popReveal {
+    from { opacity: 0; transform: translateY(-10px); max-height: 0; }
+    to   { opacity: 1; transform: translateY(0); max-height: 200px; }
+  }
+  .phone-popup.show { display: block; }
+  .phone-popup-header {
+    background: rgba(201,168,76,0.12);
+    padding: 0.6rem 1rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .phone-popup-header::before { content: '◆'; font-size: 0.4rem; }
+  .phone-entry {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.9rem 1rem;
+    background: rgba(10,10,10,0.6);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    transition: background 0.2s;
+  }
+  .phone-entry:last-child { border-bottom: none; }
+  .phone-entry:hover { background: rgba(201,168,76,0.07); }
+  .phone-entry-left { display: flex; flex-direction: column; }
+  .phone-entry-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem; letter-spacing: 0.15em;
+    color: var(--steel);
+    text-transform: uppercase;
+    margin-bottom: 0.15rem;
+  }
+  .phone-entry-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--gold-light);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .phone-entry a {
+    background: var(--gold);
+    color: var(--onyx);
+    border: none;
+    padding: 0.4rem 0.9rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .phone-entry a:hover { background: var(--gold-light); }
+
+  .whatsapp-btn {
+    display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+    background: transparent;
+    border: 1px solid rgba(37,211,102,0.4);
+    color: #25D366;
+    padding: 0.8rem 1.5rem;
+    width: 100%;
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-top: 0.8rem;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+  .whatsapp-btn:hover { background: rgba(37,211,102,0.1); box-shadow: 0 0 20px rgba(37,211,102,0.15); }
+  .whatsapp-btn svg { width: 18px; height: 18px; }
+
+  /* ─── BOOKING FORM ─── */
+  .booking-form-wrap {}
+  .booking-form-wrap h3 {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 1.5rem; font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 0.3rem;
+  }
+  .booking-form-wrap h3 + span {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--steel);
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 2rem;
+  }
+
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--steel);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--ivory);
+    padding: 0.75rem 1rem;
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: rgba(201,168,76,0.6);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.07);
+  }
+  .form-group select option { background: var(--dark); }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+
+  .form-submit {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+    color: var(--onyx);
+    border: none;
+    width: 100%;
+    padding: 1rem;
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .form-submit:hover {
+    box-shadow: 0 8px 30px rgba(201,168,76,0.4);
+    transform: translateY(-2px);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--onyx);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 3rem;
+    text-align: center;
+  }
+  .footer-logo-bn {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--gold-light);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .footer-logo-en {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem; letter-spacing: 0.3em;
+    color: var(--steel);
+    text-transform: uppercase;
+  }
+  .footer-copy {
+    margin-top: 1.5rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem; letter-spacing: 0.1em;
+    color: rgba(138,155,168,0.5);
+  }
+
+  /* ─── SERVICE CHECKBOXES ─── */
+  .service-checkboxes {
+    border: 1px solid rgba(201,168,76,0.2);
+    background: rgba(255,255,255,0.02);
+    padding: 0.5rem 0;
+  }
+  .check-item {
+    display: flex; align-items: center; gap: 0.85rem;
+    padding: 0.65rem 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(201,168,76,0.07);
+    transition: background 0.2s;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-item:hover { background: rgba(201,168,76,0.06); }
+  .check-item input[type="checkbox"] {
+    width: 16px; height: 16px; flex-shrink: 0;
+    appearance: none; -webkit-appearance: none;
+    border: 1px solid rgba(201,168,76,0.4);
+    background: transparent;
+    cursor: pointer; position: relative;
+    transition: all 0.2s;
+  }
+  .check-item input[type="checkbox"]:checked {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+  .check-item input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: var(--onyx); font-weight: 900;
+    line-height: 1;
+  }
+  .check-item span {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 0.88rem;
+    color: var(--ivory);
+    flex: 1;
+  }
+  .check-item input:checked ~ span { color: var(--gold-light); }
+  .check-item span em {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--steel);
+    font-size: 0.8rem;
+    margin-left: 0.4rem;
+  }
+
+  /* ─── FORM VALIDATION STYLES ─── */
+  .req-star { color: #e05252; font-size: 0.8rem; }
+  .field-error {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    color: #e05252;
+    margin-top: 0.3rem;
+    min-height: 0.9rem;
+    opacity: 0; transform: translateY(-4px);
+    transition: all 0.25s ease;
+  }
+  .field-error.show { opacity: 1; transform: translateY(0); }
+  .form-group input.invalid,
+  .form-group textarea.invalid {
+    border-color: rgba(224,82,82,0.7) !important;
+    box-shadow: 0 0 0 3px rgba(224,82,82,0.08) !important;
+  }
+  .service-checkboxes.invalid {
+    border-color: rgba(224,82,82,0.5) !important;
+    box-shadow: 0 0 0 3px rgba(224,82,82,0.06) !important;
+  }
+  .form-error-banner {
+    display: none; align-items: center; gap: 0.7rem;
+    background: rgba(224,82,82,0.1);
+    border: 1px solid rgba(224,82,82,0.4);
+    border-left: 3px solid #e05252;
+    padding: 0.8rem 1rem; margin-bottom: 1.4rem;
+    animation: shakeBanner 0.4s ease;
+  }
+  .form-error-banner.show { display: flex; }
+  @keyframes shakeBanner {
+    0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)}
+    40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)}
+  }
+  .form-error-icon { color: #e05252; font-size: 1rem; flex-shrink: 0; }
+  #formErrorMsg { font-family: 'Noto Serif Bengali', serif; font-size: 0.85rem; color: #f08080; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .booking-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .stats-grid { grid-template-columns: repeat(2,1fr); gap: 2rem; }
+    .stat-item::after { display: none; }
+    #services, #why, #booking { padding: 5rem 1.5rem; }
+    footer { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <span class="bn">উমা স্টিল ফার্নিচার</span>
+    <span class="en">Uma Steel Furniture</span>
+  </div>
+  <div class="nav-links">
+    <a href="#services">সেবাসমূহ</a>
+    <a href="#why">কেন আমরা</a>
+    <a href="#booking">যোগাযোগ</a>
+    <a href="#booking" class="nav-cta">বুকিং করুন</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="particles" id="particlesContainer"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ <span>সেরা মানের</span> স্টিল ফার্নিচার সার্ভিস ✦</div>
+    <h1 class="hero-title-bn">উমা স্টিল ফার্নিচার</h1>
+    <div class="hero-title-en">Uma Steel Furniture</div>
+    <div class="hero-divider"><div class="diamond"></div></div>
+    <p class="hero-tagline">আপনার আলমারি, দরজা ও আসবাসের সর্বোচ্চ যত্নে<br>বিশেষজ্ঞ মেরামত ও রক্ষণাবেক্ষণ সেবা</p>
+    <p class="hero-tagline-en">Premium repair & restoration for your cherished steel furniture</p>
+    <div class="hero-buttons">
+      <a href="#booking" class="btn-gold">সেবা নিন</a>
+      <a href="#services" class="btn-outline">আমাদের কাজ দেখুন</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>নিচে দেখুন</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="stats-grid">
+    <div class="stat-item reveal">
+      <span class="stat-num">১৫+</span>
+      <div class="stat-label-bn">বছরের অভিজ্ঞতা</div>
+      <div class="stat-label-en">Years of Experience</div>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-num">৫০০০+</span>
+      <div class="stat-label-bn">সন্তুষ্ট গ্রাহক</div>
+      <div class="stat-label-en">Happy Customers</div>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-num">১০০%</span>
+      <div class="stat-label-bn">মান নিশ্চিত</div>
+      <div class="stat-label-en">Quality Guaranteed</div>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-num">২৪/৭</span>
+      <div class="stat-label-bn">সহায়তা সেবা</div>
+      <div class="stat-label-en">Support Available</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header reveal">
+    <span class="section-label">Our Services • আমাদের সেবা</span>
+    <div class="section-title-bn">আমরা যা করি</div>
+    <div class="section-title-en">What We Offer</div>
+    <div class="gold-line wide"></div>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <span class="service-num">01</span>
+      <div class="service-name-bn">আলমারির হ্যান্ডেল পরিবর্তন</div>
+      <div class="service-name-en">Almirah Handle Replacement</div>
+      <p class="service-desc">পুরনো বা ভাঙা হ্যান্ডেল দ্রুত ও দক্ষতার সাথে পরিবর্তন করা হয়। উচ্চমানের উপকরণ ব্যবহার করে দীর্ঘস্থায়ী সমাধান।</p>
+      <div class="service-arrow">বিস্তারিত জানুন </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <span class="service-num">02</span>
+      <div class="service-name-bn">তালা পরিবর্তন ও মেরামত</div>
+      <div class="service-name-en">Lock Change & Repair</div>
+      <p class="service-desc">নষ্ট তালা সারানো এবং নতুন উন্নতমানের লক লাগানোর সম্পূর্ণ সেবা। নিরাপত্তা নিশ্চিত করা আমাদের অগ্রাধিকার।</p>
+      <div class="service-arrow">বিস্তারিত জানুন </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+      </div>
+      <span class="service-num">03</span>
+      <div class="service-name-bn">আয়না প্রতিস্থাপন</div>
+      <div class="service-name-en">Mirror Replacement</div>
+      <p class="service-desc">আলমারির ভাঙা বা পুরনো আয়না পরিবর্তন করা হয় সাবধানে ও নিপুণভাবে। স্বচ্ছ ও নিখুঁত আয়না লাগানোর গ্যারান্টি।</p>
+      <div class="service-arrow">বিস্তারিত জানুন </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <span class="service-num">04</span>
+      <div class="service-name-bn">হিঞ্জ ও স্প্রিং মেরামত</div>
+      <div class="service-name-en">Hinge & Spring Repair</div>
+      <p class="service-desc">আলমারির দরজা ঝুলে গেলে বা স্প্রিং নষ্ট হলে বিশেষজ্ঞ দলের মাধ্যমে দ্রুত মেরামত করানো হয়।</p>
+      <div class="service-arrow">বিস্তারিত জানুন </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+      </div>
+      <span class="service-num">05</span>
+      <div class="service-name-bn">হোম সার্ভিস</div>
+      <div class="service-name-en">Home Service Available</div>
+      <p class="service-desc">বাড়িতে বসেই আমাদের দক্ষ কারিগরদের মাধ্যমে সমস্ত মেরামত কাজ সম্পন্ন করুন। দ্রুত ও ঝামেলামুক্ত সেবা।</p>
+      <div class="service-arrow">বিস্তারিত জানুন </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <span class="service-num">06</span>
+      <div class="service-name-bn">পেইন্টিং ও ফিনিশিং</div>
+      <div class="service-name-en">Painting & Finishing</div>
+      <p class="service-desc">মরিচা পড়া বা রং উঠে যাওয়া আসবাবে নতুনভাবে রং ও ফিনিশিং করে পুরনো আসবাবকে নতুন করে তোলা হয়।</p>
+      <div class="service-arrow">বিস্তারিত জানুন </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <span class="service-num">07</span>
+      <div class="service-name-bn">পায়া পাল্টানো</div>
+      <div class="service-name-en">Leg Repairing & Replacement</div>
+      <p class="service-desc">আলমারি বা আসবাসের ভাঙা বা বাঁকা পায়া মেরামত অথবা সম্পূর্ণ নতুন পায়া লাগানো হয়। মজবুত ও দীর্ঘস্থায়ী সমাধান।</p>
+      <div class="service-arrow">বিস্তারিত জানুন </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="section-header reveal">
+    <span class="section-label">Why Choose Us • কেন আমরা</span>
+    <div class="section-title-bn">আমাদের বিশেষত্ব</div>
+    <div class="section-title-en">Our Promise to You</div>
+    <div class="gold-line wide"></div>
+  </div>
+  <div class="why-grid">
+    <div class="why-visual reveal">
+      <div class="why-main-box">
+        <p class="why-quote-bn">
+          "আমরা শুধু আসবাব মেরামত করি না —<br>আমরা আপনার ঘরের স্মৃতি সংরক্ষণ করি।"
+        </p>
+        <p class="why-quote-en">
+          "We don't just repair furniture —<br>we preserve the memories in your home."
+        </p>
+        <div class="why-sig">
+          <div class="line"></div>
+          <span>Uma Steel Furniture</span>
+          <div class="line"></div>
+        </div>
+      </div>
+    </div>
+    <div class="why-features reveal">
+      <div class="why-feature">
+        <div class="why-feature-icon">✦</div>
+        <div class="why-feature-text">
+          <div class="why-feature-title-bn">অভিজ্ঞ কারিগর দল</div>
+          <div class="why-feature-title-en">Skilled & Experienced Craftsmen</div>
+        </div>
+      </div>
+      <div class="why-feature">
+        <div class="why-feature-icon">◈</div>
+        <div class="why-feature-text">
+          <div class="why-feature-title-bn">উচ্চমানের যন্ত্রাংশ</div>
+          <div class="why-feature-title-en">Premium Quality Spare Parts</div>
+        </div>
+      </div>
+      <div class="why-feature">
+        <div class="why-feature-icon">⊕</div>
+        <div class="why-feature-text">
+          <div class="why-feature-title-bn">সাশ্রয়ী মূল্য, সেরা কাজ</div>
+          <div class="why-feature-title-en">Affordable Pricing, Best Results</div>
+        </div>
+      </div>
+      <div class="why-feature">
+        <div class="why-feature-icon">✿</div>
+        <div class="why-feature-text">
+          <div class="why-feature-title-bn">সময়মতো সার্ভিস ডেলিভারি</div>
+          <div class="why-feature-title-en">On-Time Service Delivery</div>
+        </div>
+      </div>
+      <div class="why-feature">
+        <div class="why-feature-icon">⌘</div>
+        <div class="why-feature-text">
+          <div class="why-feature-title-bn">কাজের নিশ্চয়তা ওয়ারেন্টি</div>
+          <div class="why-feature-title-en">Service Warranty Provided</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING + CONTACT -->
+<section id="booking">
+  <div class="section-header reveal">
+    <span class="section-label">Contact & Booking • যোগাযোগ</span>
+    <div class="section-title-bn">আমাদের সাথে যোগাযোগ করুন</div>
+    <div class="section-title-en">Get In Touch With Us</div>
+    <div class="gold-line wide"></div>
+  </div>
+
+  <div class="booking-inner">
+
+    <!-- CONTACT LEFT -->
+    <div class="contact-info reveal">
+      <h3>যোগাযোগের তথ্য</h3>
+      <span>Contact Information</span>
+
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="contact-item-text">
+          <span class="contact-item-label">Address • ঠিকানা</span>
+          <span class="contact-item-value">Mahismardini Tala, Kalna, Purba Bardhaman</span>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="contact-item-text">
+          <span class="contact-item-label">Hours • সময়</span>
+          <span class="contact-item-value">সকাল ৮টা – রাত ৯টা (সোম–শনি)</span>
+        </div>
+      </div>
+
+      <!-- CALL BUTTON WITH DUAL NUMBERS -->
+      <div class="call-btn-wrapper">
+        <button class="call-btn" onclick="togglePhones()" id="callBtn">
+          <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-.88a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span>📞 এখনই ফোন করুন — Call Now</span>
+        </button>
+
+        <!-- DUAL NUMBERS PANEL -->
+        <div class="phone-popup" id="phonePopup">
+          <div class="phone-popup-header">আমাদের ফোন নম্বর • Our Phone Numbers</div>
+          <div class="phone-entry">
+            <div class="phone-entry-left">
+              <span class="phone-entry-label">মোবাইল ১ • Mobile 1</span>
+              <span class="phone-entry-number">+91 99335 94072</span>
+            </div>
+            <a href="tel:+919933594072">কল করুন</a>
+          </div>
+          <div class="phone-entry">
+            <div class="phone-entry-left">
+              <span class="phone-entry-label">মোবাইল ২ • Mobile 2</span>
+              <span class="phone-entry-number">+91 73188 25701</span>
+            </div>
+            <a href="tel:+917318825701">কল করুন</a>
+          </div>
+        </div>
+
+        <a href="https://wa.me/919933594072" target="_blank" class="whatsapp-btn">
+          <svg viewBox="0 0 24 24" fill="#25D366" stroke="none">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+          </svg>
+          WhatsApp-এ মেসেজ করুন
+        </a>
+      </div>
+    </div>
+
+    <!-- BOOKING FORM RIGHT -->
+    <div class="booking-form-wrap reveal">
+      <h3>বুকিং ফর্ম</h3>
+      <span>Service Booking Form</span>
+
+      <!-- ERROR BANNER -->
+      <div class="form-error-banner" id="formErrorBanner">
+        <span class="form-error-icon">⚠</span>
+        <span id="formErrorMsg"></span>
+      </div>
+
+      <div class="form-group">
+        <label>আপনার নাম • Your Name <span class="req-star">*</span></label>
+        <input type="text" id="f_name" placeholder="নাম লিখুন / Enter your full name">
+        <span class="field-error" id="err_name"></span>
+      </div>
+
+      <div class="form-group">
+        <label>মোবাইল নম্বর • Mobile Number <span class="req-star">*</span></label>
+        <input type="tel" id="f_phone" placeholder="+91 XXXXX XXXXX">
+        <span class="field-error" id="err_phone"></span>
+      </div>
+
+      <div class="form-group">
+        <label>সম্পূর্ণ ঠিকানা • Full Address <span class="req-star">*</span></label>
+        <textarea id="f_address" placeholder="বাড়ির নম্বর, রাস্তা, এলাকা, শহর / House No., Street, Area, City" style="min-height:70px;"></textarea>
+        <span class="field-error" id="err_address"></span>
+      </div>
+
+      <div class="form-group">
+        <label>সেবা নির্বাচন করুন • Select Services <span class="req-star">*</span> <span style="color:var(--gold);font-size:0.55rem;letter-spacing:0.1em;">(একাধিক বেছে নিন / Multiple Allowed)</span></label>
+        <div class="service-checkboxes" id="f_services">
+          <label class="check-item"><input type="checkbox" value="আলমারির হ্যান্ডেল পরিবর্তন"><span>আলমারির হ্যান্ডেল পরিবর্তন <em>Handle Replacement</em></span></label>
+          <label class="check-item"><input type="checkbox" value="তালা পরিবর্তন ও মেরামত"><span>তালা পরিবর্তন ও মেরামত <em>Lock Change & Repair</em></span></label>
+          <label class="check-item"><input type="checkbox" value="আয়না প্রতিস্থাপন"><span>আয়না প্রতিস্থাপন <em>Mirror Replacement</em></span></label>
+          <label class="check-item"><input type="checkbox" value="হিঞ্জ ও স্প্রিং মেরামত"><span>হিঞ্জ ও স্প্রিং মেরামত <em>Hinge & Spring Repair</em></span></label>
+          <label class="check-item"><input type="checkbox" value="হোম সার্ভিস"><span>হোম সার্ভিস <em>Home Service</em></span></label>
+          <label class="check-item"><input type="checkbox" value="পেইন্টিং ও ফিনিশিং"><span>পেইন্টিং ও ফিনিশিং <em>Painting & Finishing</em></span></label>
+          <label class="check-item"><input type="checkbox" value="পায়া পাল্টানো"><span>পায়া পাল্টানো <em>Leg Repairing & Replacement</em></span></label>
+        </div>
+        <span class="field-error" id="err_services"></span>
+      </div>
+
+      <div class="form-group">
+        <label>পছন্দের তারিখ • Preferred Date <span class="req-star">*</span></label>
+        <input type="date" id="f_date">
+        <span class="field-error" id="err_date"></span>
+      </div>
+
+      <div class="form-group">
+        <label>অতিরিক্ত তথ্য • Additional Details <span style="color:var(--steel);font-size:0.55rem;">(ঐচ্ছিক / Optional)</span></label>
+        <textarea id="f_details" placeholder="কোনো বিশেষ তথ্য বা সমস্যার বিবরণ লিখুন... / Any special notes or problem description..."></textarea>
+      </div>
+
+      <button class="form-submit" onclick="submitForm()">
+        ✦ বুকিং নিশ্চিত করুন — Confirm Booking
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo-bn">উমা স্টিল ফার্নিচার</span>
+  <span class="footer-logo-en">Uma Steel Furniture • Kalna</span>
+  <div class="gold-line" style="margin-top:1.2rem;"></div>
+  <p class="footer-copy">© 2025 Uma Steel Furniture. All Rights Reserved. সর্বস্বত্ব সংরক্ষিত।</p>
+</footer>
+
+<script>
+  /* ─── PARTICLES ─── */
+  const pc = document.getElementById('particlesContainer');
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `left:${Math.random()*100}%;animation-duration:${6+Math.random()*10}s;animation-delay:${Math.random()*8}s;width:${1+Math.random()*2}px;height:${1+Math.random()*2}px`;
+    pc.appendChild(p);
+  }
+
+  /* ─── NAVBAR SCROLL ─── */
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  /* ─── REVEAL ON SCROLL ─── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ─── PHONE TOGGLE ─── */
+  function togglePhones() {
+    const popup = document.getElementById('phonePopup');
+    const btn = document.getElementById('callBtn');
+    const isShown = popup.classList.contains('show');
+    popup.classList.toggle('show');
+    btn.querySelector('span').textContent = isShown
+      ? '📞 এখনই ফোন করুন — Call Now'
+      : '✕ বন্ধ করুন — Close';
+  }
+
+  /* ─── FORM VALIDATION & SUBMIT ─── */
+  function clearErrors() {
+    document.querySelectorAll('.field-error').forEach(e => { e.textContent=''; e.classList.remove('show'); });
+    document.querySelectorAll('.invalid').forEach(e => e.classList.remove('invalid'));
+    document.getElementById('formErrorBanner').classList.remove('show');
+  }
+  function setError(fieldId, errId, msg) {
+    const field = document.getElementById(fieldId);
+    const err   = document.getElementById(errId);
+    if (field)  field.classList.add('invalid');
+    if (err)  { err.textContent = msg; err.classList.add('show'); }
+  }
+  function submitForm() {
+    clearErrors();
+    const name    = document.getElementById('f_name').value.trim();
+    const phone   = document.getElementById('f_phone').value.trim();
+    const address = document.getElementById('f_address').value.trim();
+    const date    = document.getElementById('f_date').value;
+    const checked = [...document.querySelectorAll('#f_services input[type=checkbox]:checked')];
+    let errors = [];
+
+    if (!name) {
+      setError('f_name','err_name','নাম আবশ্যক • Name is required');
+      errors.push('নাম');
+    }
+    if (!phone || !/^[0-9+\s\-]{8,15}$/.test(phone)) {
+      setError('f_phone','err_phone','সঠিক মোবাইল নম্বর দিন • Enter a valid mobile number');
+      errors.push('মোবাইল নম্বর');
+    }
+    if (!address) {
+      setError('f_address','err_address','সম্পূর্ণ ঠিকানা আবশ্যক • Full address is required');
+      errors.push('ঠিকানা');
+    }
+    if (checked.length === 0) {
+      document.getElementById('f_services').classList.add('invalid');
+      const err = document.getElementById('err_services');
+      err.textContent = 'কমপক্ষে একটি সেবা বেছে নিন • Select at least one service';
+      err.classList.add('show');
+      errors.push('সেবা');
+    }
+    if (!date) {
+      setError('f_date','err_date','পছন্দের তারিখ বেছে নিন • Please select a preferred date');
+      errors.push('তারিখ');
+    } else {
+      const chosen = new Date(date), today = new Date();
+      today.setHours(0,0,0,0);
+      if (chosen < today) {
+        setError('f_date','err_date','অতীতের তারিখ দেওয়া যাবে না • Date cannot be in the past');
+        errors.push('তারিখ');
+      }
+    }
+
+    if (errors.length > 0) {
+      const banner = document.getElementById('formErrorBanner');
+      document.getElementById('formErrorMsg').textContent =
+        '⚠ অনুগ্রহ করে পূরণ করুন: ' + errors.join(', ') + ' — Please fill all required fields';
+      banner.classList.remove('show');
+      void banner.offsetWidth; // restart animation
+      banner.classList.add('show');
+      banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // GENERATE ORDER ID
+    const orderID = 'USF-' + Date.now().toString(36).toUpperCase().slice(-6) + '-' + Math.floor(Math.random()*900+100);
+
+    // BUILD WHATSAPP MESSAGE
+    const services = checked.map(c => c.value).join(', ');
+    const details  = document.getElementById('f_details').value.trim();
+    const dateFormatted = new Date(date).toLocaleDateString('bn-IN', { day:'numeric', month:'long', year:'numeric' });
+
+    const msg = `🔔 *নতুন বুকিং — Uma Steel Furniture*
+
+🆔 *Order ID:* ${orderID}
+👤 *নাম:* ${name}
+📞 *মোবাইল:* ${phone}
+🏠 *ঠিকানা:* ${address}
+🔧 *সেবা:* ${services}
+📅 *পছন্দের তারিখ:* ${dateFormatted}${details ? `\n📝 *অতিরিক্ত তথ্য:* ${details}` : ''}
+
+_Uma Steel Furniture Website থেকে বুকিং_`;
+
+    const waURL = `https://wa.me/919933594072?text=${encodeURIComponent(msg)}`;
+
+    // SHOW ORDER ID SUCCESS CARD
+    const formWrap = document.querySelector('.booking-form-wrap');
+    const oldCard = document.getElementById('orderSuccessCard');
+    if (oldCard) oldCard.remove();
+
+    const card = document.createElement('div');
+    card.id = 'orderSuccessCard';
+    card.innerHTML = `
+      <div style="
+        border:1px solid rgba(201,168,76,0.5);
+        background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(10,10,10,0.9));
+        padding:1.8rem;
+        margin-bottom:1.2rem;
+        animation: popReveal 0.5s ease forwards;
+        text-align:center;
+      ">
+        <div style="font-size:2rem;margin-bottom:0.5rem;">✅</div>
+        <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.2em;color:var(--steel);text-transform:uppercase;margin-bottom:0.4rem;">বুকিং সফল হয়েছে • Booking Confirmed</div>
+        <div style="font-family:'Noto Serif Bengali',serif;font-size:0.9rem;color:rgba(250,246,238,0.7);margin-bottom:1rem;">আপনার Order ID সংরক্ষণ করুন</div>
+        <div style="
+          background:rgba(201,168,76,0.15);
+          border:1px dashed rgba(201,168,76,0.5);
+          padding:0.8rem 1.5rem;
+          display:inline-block;
+          margin-bottom:1rem;
+        ">
+          <span style="font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.2em;color:var(--steel);display:block;margin-bottom:0.2rem;">ORDER ID</span>
+          <span style="font-family:'Cinzel',serif;font-size:1.4rem;font-weight:700;color:var(--gold-light);letter-spacing:0.1em;">${orderID}</span>
+        </div>
+        <div style="font-family:'Noto Serif Bengali',serif;font-size:0.8rem;color:rgba(250,246,238,0.5);">এই নম্বর দিয়ে আপনার বুকিং track করতে পারবেন</div>
+      </div>
+    `;
+
+    // Insert card before the submit button
+    const submitBtn = document.querySelector('.form-submit');
+    formWrap.insertBefore(card, submitBtn);
+
+    // SUCCESS UI on button
+    const btn = document.querySelector('.form-submit');
+    btn.textContent = '✓ বুকিং সফল! WhatsApp খুলছে...';
+    btn.style.background = 'linear-gradient(135deg,#2d5a27,#4CAF50)';
+    btn.style.color = '#fff';
+    btn.disabled = true;
+
+    // Open WhatsApp after short delay
+    setTimeout(() => { window.open(waURL, '_blank'); }, 800);
+
+    setTimeout(() => {
+      btn.textContent = '✦ বুকিং নিশ্চিত করুন — Confirm Booking';
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.disabled = false;
+      document.getElementById('f_name').value = '';
+      document.getElementById('f_phone').value = '';
+      document.getElementById('f_address').value = '';
+      document.getElementById('f_date').value = '';
+      document.getElementById('f_details').value = '';
+      document.querySelectorAll('#f_services input[type=checkbox]').forEach(c => c.checked = false);
+    }, 4000);
+  }
+</script>
+</body>
+</html>
